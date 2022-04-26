@@ -3,7 +3,6 @@ package com.example.autoverifier;
 import com.fasterxml.jackson.databind.JsonNode;
 import lombok.extern.slf4j.Slf4j;
 import org.javatuples.Pair;
-import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -23,16 +22,23 @@ public class JsonProcessor implements OutputProcessor {
         if (!Files.exists(Paths.get(path)) && pathAsFile.mkdir()) {
             log.info("{} created", path);
             for (Pair<String, JsonNode> result : results) {
-                final var fileName = result.getValue0()
-                    .replace("yml", "json");
+                final var fileNameWithoutExtension = result.getValue0().replace(".yml", "");
+                if (result.getValue1().isEmpty()) {
+                    log.info("{} responses matched", fileNameWithoutExtension);
+                    continue;
+                }
+
+                final var outputFileName = fileNameWithoutExtension.concat(".json");
                 final var file = new File(
-                    pathAsFile.getAbsolutePath() + File.separator + fileName);
+                    pathAsFile.getAbsolutePath() + File.separator + outputFileName);
                 var ignore = file.createNewFile();
                 final var fileWriter = new FileWriter(file.getAbsolutePath());
                 fileWriter.write(result.getValue1().toPrettyString());
+                log.error("{} response did not match {}", fileNameWithoutExtension,
+                    result.getValue1().toString());
                 fileWriter.flush();
                 fileWriter.close();
-                log.info("{} reported", fileName);
+                log.info("{} reported", outputFileName);
             }
         }
     }
