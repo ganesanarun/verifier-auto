@@ -1,0 +1,7 @@
+!!com.example.autoverifier.BothRequests
+legacy:
+  method: GET
+  url: http://localhost:8081/api/users
+latest:
+  method: GET
+  url: http://localhost:8081/api/users2

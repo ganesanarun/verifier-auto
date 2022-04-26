@@ -1,0 +1,19 @@
+!!com.example.autoverifier.BothRequests
+legacy:
+  method: POST
+  url: http://localhost:8081/api/users
+  body: {
+        firstName: "first1",
+        lastName: "last1",
+        email: "abc@gmail.com",
+        nested: {}
+    }
+latest:
+  method: POST
+  url: http://localhost:8081/api/users
+  body: {
+        firstName: "first1",
+        lastName: "last1",
+        email: "abc@gmail.com",
+        nested: {}
+    }
