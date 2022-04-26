@@ -19,13 +19,13 @@ public class YamlReader implements FilesReader {
         resolver = new PathMatchingResourcePatternResolver();
     }
 
-    public Stream<Pair<String, BothRequests>> get(String rootFolder) throws IOException {
+    public Stream<Pair<String, PairRequest>> get(String rootFolder) throws IOException {
         final var yaml = new Yaml();
         return Arrays.stream(resolver.getResources(String.format("/%s/*.yml", rootFolder)))
             .map(resource -> {
                 try {
                     return Pair.with(resource.getFilename(),
-                        yaml.<BothRequests>load(resource.getInputStream()));
+                        yaml.<PairRequest>load(resource.getInputStream()));
                 } catch (IOException e) {
                     log.error("Failed to load {}", resource.getFilename(), e);
                     return null;

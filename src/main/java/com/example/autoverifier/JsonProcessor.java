@@ -23,7 +23,8 @@ public class JsonProcessor implements OutputProcessor {
             log.info("{} created", path);
             for (Pair<String, JsonNode> result : results) {
                 final var fileNameWithoutExtension = result.getValue0().replace(".yml", "");
-                if (result.getValue1().isEmpty()) {
+
+                if (result.getValue1() != null && result.getValue1().isEmpty()) {
                     log.info("{} responses matched", fileNameWithoutExtension);
                     continue;
                 }
@@ -33,9 +34,15 @@ public class JsonProcessor implements OutputProcessor {
                     pathAsFile.getAbsolutePath() + File.separator + outputFileName);
                 var ignore = file.createNewFile();
                 final var fileWriter = new FileWriter(file.getAbsolutePath());
-                fileWriter.write(result.getValue1().toPrettyString());
-                log.error("{} response did not match {}", fileNameWithoutExtension,
-                    result.getValue1().toString());
+                if (result.getValue1() != null) {
+                    fileWriter.write(result.getValue1().toPrettyString());
+                    log.error("{} response did not match {}", fileNameWithoutExtension,
+                        result.getValue1().toString());
+                } else {
+                    fileWriter.write("{\"error\": \"Failed to generate report\"}");
+                    log.error("{} Failed to generate report", fileNameWithoutExtension);
+                }
+
                 fileWriter.flush();
                 fileWriter.close();
                 log.info("{} reported", outputFileName);

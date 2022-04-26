@@ -7,5 +7,5 @@ import java.util.stream.Stream;
 
 public interface FilesReader {
 
-    Stream<Pair<String, BothRequests>> get(String rootFolder) throws IOException;
+    Stream<Pair<String, PairRequest>> get(String rootFolder) throws IOException;
 }

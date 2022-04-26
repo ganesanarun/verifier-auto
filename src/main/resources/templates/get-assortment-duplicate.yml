@@ -1,4 +1,4 @@
-!!com.example.autoverifier.BothRequests
+!!com.example.autoverifier.PairRequest
 legacy:
   method: GET
   url: http://localhost:8081/api/users

@@ -5,7 +5,7 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class BothRequests {
+public class PairRequest {
     Request legacy;
     Request latest;
 }
