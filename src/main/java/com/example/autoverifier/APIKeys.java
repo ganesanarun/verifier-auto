@@ -7,21 +7,10 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Map;
 
 @Configuration
-@ConfigurationProperties(prefix = "apikey")
+@ConfigurationProperties(prefix = "headers")
 @Data
 public class APIKeys {
 
-    private String legacy;
-    private String latest;
-
-    final String LEGACY_KEY = "ApiKey";
-    final String LATEST_KEY = "ApiKey";
-
-    public Map<String, String> getLatest() {
-        return Map.of(LATEST_KEY, latest);
-    }
-
-    public Map<String, String> getLegacy() {
-        return Map.of(LEGACY_KEY, legacy);
-    }
+    private Map<String, String> legacy;
+    private Map<String, String> latest;
 }

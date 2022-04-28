@@ -1,3 +1,9 @@
-apikey:
-  legacy: 'legacy'
-  latest: 'latest'
+
+headers:
+  legacy:
+    apiKey: 'key'
+    X-gateway-Something: 'whatever'
+
+  latest:
+    apiKey: 'key'
+    X-gateway-Something: 'whatever'

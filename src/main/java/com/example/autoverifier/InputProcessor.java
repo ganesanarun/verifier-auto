@@ -23,10 +23,10 @@ public class InputProcessor {
                 apiKeys.getLatest());
             final var legacyResponseCompletable = requestMaker.make(bothRequests.getLegacy(),
                 apiKeys.getLegacy());
-            return JsonDiff.asJson(legacyResponseCompletable.get(), latestResponseCompletable.get());
-        }
-        catch (Exception e) {
-            log.error("Failed to make a call for {}", bothRequests);
+            return JsonDiff.asJson(legacyResponseCompletable.get(),
+                latestResponseCompletable.get());
+        } catch (Exception e) {
+            log.error("Failed to make a call for {}", bothRequests, e);
             return null;
         }
     }

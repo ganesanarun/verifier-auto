@@ -1,19 +1,23 @@
 !!com.example.autoverifier.PairRequest
 legacy:
   method: POST
-  url: http://localhost:8081/api/users
+  url: https://price-pem-item-service-test-green.apps.cfcommerce.dev.azeus.gaptech.com/customerChoiceDetails
   body: {
-        firstName: "first1",
-        lastName: "last1",
-        email: "abc@gmail.com",
-        nested: {}
-    }
+    "brand": "1",
+    "channel": "RTL",
+    "market": "US",
+    "programIds": [
+        "108342001"
+    ]
+  }
 latest:
   method: POST
-  url: http://localhost:8081/api/users
+  url: https://price-pem-item-service-test-green.apps.cfcommerce.dev.azeus.gaptech.com/customerChoiceDetails
   body: {
-        firstName: "first1",
-        lastName: "last1",
-        email: "abc@gmail.com",
-        nested: {}
-    }
+    "brand": "1",
+    "channel": "RTL",
+    "market": "US",
+    "programIds": [
+        "108342001"
+    ]
+  }
